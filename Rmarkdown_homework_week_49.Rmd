@@ -1,0 +1,43 @@
+---
+title: "Homework Week 49"
+author: "Peter Las Holtet"
+date: "2022-12-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setup
+
+```{r}
+library(tidyverse)
+library(rvest)
+```
+
+## hent hjemmeside
+
+```{r}
+url <- 'https://www.worldometers.info/gdp/gdp-by-country/'
+
+html <- read_html(url)
+```
+
+Hjemmesiden er nu hentet og er defineret som html
+
+## hent tabel 
+
+Hvis man inspicerer hjemmesiden kan man se at tabellen har det ID der hedder example2 
+jeg laver derfor følgende:
+definere en dataframe som GDP_table
+under html piper jeg html_element('#example2') og piper html_table()
+man skal bruge # for at indikere at det er et ID. html_table sætter denne data i en dataframe. 
+
+```{r}
+GDP_table <- html %>% 
+  html_element('#example2') %>% 
+  html_table()
+```
+
+
